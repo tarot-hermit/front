@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>text15.html</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+'use strict';
+
+function fCheck() {
+  let products = document.getElementsByName("product");
+  let sum = 0;
+
+  for (let i = 0; i < products.length; i++) {
+    let value = products[i].value.trim();
+
+    
+    if (value === "") {
+      alert(`상품수량${i + 1}을 입력하세요`);
+      products[i].focus();
+      return;
+    }
+
+    let num = Number(value);
+
+    
+    if (num <= 0) {
+      alert(`상품수량${i + 1}은 1 이상만 입력 가능합니다`);
+      products[i].focus();
+      products[i].value = 1; 
+      return;
+    }
+
+    sum += num;
+  }
+
+  document.getElementById("demo").innerHTML =
+    "<b>상품 전체 합계 : </b>" + sum;
+}
+</script>
+
+</head>
+
+<body>
+  <br />
+  <div class="container">
+    <h2 class="text-center mb-3">상품 주문서</h2>
+    <form name="myform">
+      <div class="mb-2 input-group">
+        <div class="input-group-text">상품1</div>
+        <input type="number" name="product" id="product1" value="10" class="form-control">
+      </div>
+      <div class="mb-2 input-group">
+        <div class="input-group-text">상품2</div>
+        <input type="number" name="product" id="product2" value="10" class="form-control">
+      </div>
+      <div class="mb-2 input-group">
+        <div class="input-group-text">상품3</div>
+        <input type="number" name="product" id="product3" value="10" class="form-control">
+      </div>
+      <div class="mb-2 input-group">
+        <div class="input-group-text">상품4</div>
+        <input type="number" name="product" id="product4" value="10" class="form-control">
+      </div>
+      <div class="mb-2 input-group">
+        <div class="input-group-text">상품5</div>
+        <input type="number" name="product" id="product5" value="10" class="form-control">
+      </div>
+      <div>
+        <input type="button" onclick="fCheck()" value="전송" class="btn btn-success form-control mb-1" />
+        <input type="reset" value="다시입력" class="btn btn-warning form-control" />
+      </div>
+      <div id="demo"></div>
+    </form>
+</body>
+
+</html>

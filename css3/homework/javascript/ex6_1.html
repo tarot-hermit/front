@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Phone Calculator</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <style>
+    body { background: #f5f6f8; }
+    .calc-wrap {
+      max-width: 380px;
+      margin: 24px auto;
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,.12);
+      background: #111;
+    }
+    .calc-top {
+      padding: 18px 16px 10px;
+      background: #111;
+    }
+    .calc-history {
+      min-height: 22px;
+      color: rgba(255,255,255,.65);
+      font-size: .95rem;
+      text-align: right;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .calc-display {
+      color: #fff;
+      font-size: 2.4rem;
+      font-weight: 700;
+      text-align: right;
+      padding: 6px 0 10px;
+      line-height: 1.1;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .calc-pad { padding: 12px; background: #161616; }
+    .btn-key {
+      width: 100%;
+      height: 64px;
+      font-size: 1.25rem;
+      font-weight: 600;
+      border-radius: 16px;
+    }
+    .btn-key.op { font-size: 1.35rem; }
+    .btn-key.zero { text-align: left; padding-left: 26px; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+    .span-2 { grid-column: span 2; }
+    .hint {
+      color: rgba(255,255,255,.45);
+      font-size: .8rem;
+      text-align: center;
+      padding: 8px 0 12px;
+      background: #111;
+    }
+  </style>
+
+  <script>
+    'use strict';
+
+    // 표시되는 값(현재 입력 중)
+    let current = "0";
+    // 계산식(문자열) 누적
+    let expr = "";
+    // 마지막이 "="인지 여부
+    let justEvaluated = false;
+
+    function render() {
+      document.getElementById("display").innerText = current;
+      document.getElementById("history").innerText = expr;
+    }
+
+    function setCurrent(next) {
+      current = next;
+      render();
+    }
+
+    function appendDigit(d) {
+      if (justEvaluated) { // "=" 후 숫자 누르면 새로 시작
+        expr = "";
+        current = "0";
+        justEvaluated = false;
+      }
+
+      if (current === "0" && d !== ".") current = "";
+      if (d === "." && current.includes(".")) return; // 소수점 중복 방지
+
+      current += d;
+      render();
+    }
+
+    function appendOp(op) {
+      // "=" 직후 연산자 누르면 현재값을 이어서 계산 가능
+      justEvaluated = false;
+
+      // current가 "-"만 있는 상태 같은 이상 케이스 방지
+      if (current === "" || current === "-") return;
+
+      // 기존 expr에 current 붙이고 op 붙이기
+      if (expr === "") {
+        expr = current + " " + op + " ";
+      } else {
+        // expr가 연산자로 끝나면 교체
+        if (/[+\-*/]\s$/.test(expr)) {
+          expr = expr.replace(/[+\-*/]\s$/, op + " ");
+        } else {
+          expr += current + " " + op + " ";
+        }
+      }
+
+      current = "0";
+      render();
+    }
+
+    function allClear() {
+      current = "0";
+      expr = "";
+      justEvaluated = false;
+      render();
+    }
+
+    function backspace() {
+      if (justEvaluated) return;
+      if (current.length <= 1 || (current.length === 2 && current.startsWith("-"))) {
+        current = "0";
+      } else {
+        current = current.slice(0, -1);
+      }
+      render();
+    }
+
+    function toggleSign() {
+      if (current === "0") return;
+      if (current.startsWith("-")) current = current.slice(1);
+      else current = "-" + current;
+      render();
+    }
+
+    function percent() {
+      // 현재 입력값을 1/100로
+      const n = Number(current);
+      if (Number.isNaN(n)) return;
+      current = String(n / 100);
+      render();
+    }
+
+    function evaluateExpr() {
+      // expr가 비어있으면 current만 유지
+      if (expr === "") {
+        justEvaluated = true;
+        render();
+        return;
+      }
+
+      // expr 끝이 연산자인 경우 current까지 붙여서 완성
+      let full = expr;
+      if (/[+\-*/]\s$/.test(full)) full += current;
+
+      // 안전성: 허용 문자만 남기기(숫자/공백/연산자/소수점/마이너스)
+      const sanitized = full.replace(/[^0-9+\-*/. ]/g, "");
+
+      try {
+        // eval은 학습용. 실제론 switch/파서 권장.
+        const result = eval(sanitized);
+
+        expr = full + " =";
+        current = (result === Infinity || Number.isNaN(result)) ? "Error" : String(result);
+        justEvaluated = true;
+        render();
+      } catch (e) {
+        current = "Error";
+        justEvaluated = true;
+        render();
+      }
+    }
+
+    // 키보드 지원(선택): 숫자/연산/Enter/Backspace
+    window.addEventListener("keydown", (e) => {
+      const k = e.key;
+      if ((k >= "0" && k <= "9") || k === ".") appendDigit(k);
+      else if (k === "+" || k === "-" || k === "*" || k === "/") appendOp(k);
+      else if (k === "Enter" || k === "=") { e.preventDefault(); evaluateExpr(); }
+      else if (k === "Backspace") backspace();
+      else if (k === "Escape") allClear();
+    });
+
+    window.addEventListener("load", render);
+  </script>
+</head>
+
+<body>
+  <div class="calc-wrap">
+    <div class="calc-top">
+      <div id="history" class="calc-history"></div>
+      <div id="display" class="calc-display">0</div>
+    </div>
+
+    <div class="calc-pad">
+      <div class="grid">
+        <button type="button" class="btn btn-light btn-key" onclick="allClear()">C</button>
+        <button type="button" class="btn btn-light btn-key" onclick="toggleSign()">±</button>
+        <button type="button" class="btn btn-light btn-key" onclick="percent()">%</button>
+        <button type="button" class="btn btn-warning btn-key op" onclick="appendOp('/')">÷</button>
+
+        <button type="button" class="btn btn-dark text-white btn-key" onclick="appendDigit('7')">7</button>
+        <button type="button" class="btn btn-dark text-white btn-key" onclick="appendDigit('8')">8</button>
+        <button type="button" class="btn btn-dark text-white btn-key" onclick="appendDigit('9')">9</button>
+        <button type="button" class="btn btn-warning btn-key op" onclick="appendOp('*')">×</button>
+
+        <button type="button" class="btn btn-dark text-white btn-key" onclick="appendDigit('4')">4</button>
+        <button type="button" class="btn btn-dark text-white btn-key" onclick="appendDigit('5')">5</button>
+        <button type="button" class="btn btn-dark text-white btn-key" onclick="appendDigit('6')">6</button>
+        <button type="button" class="btn btn-warning btn-key op" onclick="appendOp('-')">−</button>
+
+        <button type="button" class="btn btn-dark text-white btn-key" onclick="appendDigit('1')">1</button>
+        <button type="button" class="btn btn-dark text-white btn-key" onclick="appendDigit('2')">2</button>
+        <button type="button" class="btn btn-dark text-white btn-key" onclick="appendDigit('3')">3</button>
+        <button type="button" class="btn btn-warning btn-key op" onclick="appendOp('+')">+</button>
+
+        <button type="button" class="btn btn-dark text-white btn-key zero span-2" onclick="appendDigit('0')">0</button>
+        <button type="button" class="btn btn-dark text-white btn-key" onclick="appendDigit('.')">.</button>
+        <button type="button" class="btn btn-success btn-key op" onclick="evaluateExpr()">=</button>
+
+        <button type="button" class="btn btn-secondary btn-key span-2" onclick="backspace()">⌫</button>
+        <button type="button" class="btn btn-secondary btn-key span-2" onclick="allClear()">AC</button>
+      </div>
+    </div>
+
+    <div class="hint">키보드: 숫자/연산자, Enter(=), Backspace, Esc</div>
+  </div>
+</body>
+</html>

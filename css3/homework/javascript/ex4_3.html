@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ex4_3.html</title>
+  <style>
+    * {box-sizing: border-box;}
+    body {margin: 0; font-family: "맑은 고딕", Arial, sans-serif; color: #222;}
+    .wrap { width: 900px; margin: 30px auto; }
+
+    h1 { font-size: 34px; margin: 0 0 18px; font-weight: 900;}
+
+    fieldset {
+      border: 2px solid #9a9a9a;
+      padding: 14px 16px 16px;
+      margin: 0 0 16px;
+      background: #fff;
+    }
+    legend {padding: 0 10px; font-weight: 900; color: #7b0066;}
+
+    .row { display: flex; align-items: center; gap: 12px; margin: 10px 0;}
+    .row label { width: 70px; font-weight: 800;}
+    input[type="text"], input[type="tel"]{
+      height: 26px;
+      border: 1px solid #888;
+      padding: 2px 6px;
+      width: 240px;
+    }
+
+    .w500 { width: 520px;}
+    textarea {
+      border: 1px solid #888;
+      padding: 6px;
+      width: 520px;
+      height: 90px;
+      resize: vertical;
+    }
+
+    .order-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 10px 0;
+      font-size: 14px;
+    }
+    
+    .order-item input[type="number"] {
+      width: 70px;
+      height: 26px;
+      border: 1px solid #888;
+      padding: 2px 6px;
+    }
+
+    .btns {display: flex; justify-content: center; gap: 16px; margin-top: 10px;}
+    .btn {
+      height: 28px;
+      padding: 0 16px;
+      border: 1px solid #777;
+      background: #eee;
+      cursor: pointer;
+      font-weight: 800;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>상품 주문서</h1>
+    <form>
+      <fieldset>
+        <legend>개인 정보</legend>
+        <div class="row">
+          <label for="pname">이름</label>
+          <input type="text" id="pname" name="pname" placeholder="여백없이 입력"/>
+
+        </div>
+        <div class="row" >
+          <lavel for="ptel">연락처</lavel>
+          <input type="tel" id="ptel" name="ptel" placeholder="연락가능한 번호"/>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>배송지 정보</legend>
+        <div class="row">
+          <label for="addr">주소</label>
+          <input class="w500" type="text" id="addr" name="addr"/>
+        </div>
+        
+        
+        <div class="row">
+          <label for="dtel">전화번호</label>
+          <input  type="tel" id="dtel" name="dtel"/>
+        </div>
+        
+        <div class="row">
+          <label for="memo">메모</label>
+          <textarea  id="memo" name="memo"></textarea>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>주문 정보</legend>
+
+        <div class="order-item">
+          <label><input type="checkbox" name="item1"/>과테말라 안티구아 (100g)</label>
+          <input type="number" name="cnt1" value="0" min="0"/>개
+        </div>
+
+        <div class="order-item">
+          <label><input type="checkbox" name="item2"/>인도네시아 만델리 (100g)</label>
+          <input type="number" name="cnt2" value="0" min="0"/>개
+        </div>
+        
+        <div class="order-item">
+          <label><input type="checkbox" name="item3"/>탐라는 도다 (100g)</label>
+          <input type="number" name="cnt3" value="0" min="0"/>개
+        </div>
+      </fieldset>
+
+      <div class=btns>
+        <button type="submit" class="btn">주문 하기</button>
+        <button type="reset" class="btn">다시 작성</button>
+      </div>
+
+    </form>
+  </div>
+</body>
+</html>

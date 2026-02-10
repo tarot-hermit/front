@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>Random Race</title>
+  <style>
+    body {
+      padding: 30px;
+      font-family: sans-serif;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+    }
+
+    
+    .track {
+      position: relative;
+      width: 600px;
+      border-right: 5px solid black; 
+      margin-bottom: 20px;
+    }
+
+    
+    .runner {
+      width: 100px;
+      height: 100px;
+      position: relative;
+      margin-bottom: 15px;
+      animation-name: race;
+      animation-fill-mode: forwards;
+      animation-play-state: paused;
+    }
+
+    
+    .start .runner {
+      animation-play-state: running;
+    }
+
+    
+    #box1 { background: red; }
+    #box2 { background: orange; }
+    #box3 { background: green; }
+    #box4 { background: blue; }
+
+    @keyframes race {
+      from { left: 0; }
+      to   { left: 500px; }
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h2>🏁 랜덤 경주</h2>
+
+  <button onclick="startRace()">출발!</button>
+
+  <div class="track" id="track">
+    <div id="box1" class="runner"></div>
+    <div id="box2" class="runner"></div>
+    <div id="box3" class="runner"></div>
+    <div id="box4" class="runner"></div>
+  </div>
+
+  <p>출발할 때마다 도착 순서가 랜덤입니다.</p>
+
+  <script>
+    function startRace() {
+      const runners = document.querySelectorAll(".runner");
+      const track = document.getElementById("track");
+
+      
+      track.classList.remove("start");
+
+      runners.forEach(runner => {
+        
+        const randomTime = (Math.random() * 5 + 3).toFixed(2);
+
+      
+        runner.style.animation = "none";
+        runner.offsetHeight; 
+        runner.style.animation = `race ${randomTime}s forwards`;
+      });
+
+      
+      track.classList.add("start");
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,236 @@
+
+<html>
+  <head>
+    <title>그린 시스템(Green System)</title>
+  </head>
+  <body>
+
+    <table width="1000" align="center" cellspacing="0" cellpadding="0" border="1">
+
+      <!-- ================= 상단 ================= -->
+      <tr>
+        <td>
+          <table width="1000" height="100" cellspacing="0" cellpadding="0" border="1">
+            <tr>
+              <td width="150" height="100" align="center">
+                <img src="../../images/11.jpg" width="150" height="100">
+              </td>
+              <td width="500" height="100" align="center" bgcolor="#green">
+                중앙구역
+              </td>
+              <td width="350" height="100" valign="top" align="right" bgcolor="#skyblue">
+                <a href="#">홈으로</a> | <a href="#">다운로드</a> | <a href="#">공지사항</a>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+
+
+      <tr>
+        <td>
+
+          <table width="950" cellspacing="0" cellpadding="0" border="0" align="center">
+
+            <!-- 위 여백 -->
+            <tr>
+              <td height="50" bgcolor="#FFFFFF"></td>
+            </tr>
+
+            <!-- 메인 중단 -->
+            <tr>
+              <td>
+              <table width="950" height="700" cellspacing="0" cellpadding="0" border="1">
+                <tr>
+                <!-- 왼쪽 영역 -->
+                <td width="450" height="700" valign="top" bgcolor="#E6F0FF">
+
+                <form name="joinForm" method="get" action="joinOk.html">
+
+                  <table width="100%" cellspacing="0" cellpadding="8" border="1" bgcolor="#FFFFFF">
+                  <tr>
+                    <th colspan="2" bgcolor="#CDEBFF">
+                      <h3>회원가입</h3>
+                    </th>
+                  </tr>
+
+                  <tr>
+                    <td align="right">아이디</td>
+                    <td>
+                      <input type="text" name="userid" required autofocus placeholder="아이디 입력">
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td align="right">비밀번호</td>
+                    <td>
+                      <input type="password" name="pwd" required>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td align="right">비밀번호 확인</td>
+                    <td>
+                      <input type="password" name="pwd2" required>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td align="right">이름</td>
+                    <td>
+                      <input type="text" name="name" required>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td align="right">성별</td>
+                    <td>
+                      <input type="radio" name="gender" value="남자">남자
+                      <input type="radio" name="gender" value="여자" checked>여자
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td align="right">나이</td>
+                    <td>
+                      <input type="number" name="age" min="1" max="120">
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td align="right">취미</td>
+                    <td>
+                      <input type="checkbox" name="hobby" value="등산">등산
+                      <input type="checkbox" name="hobby" value="독서">독서
+                      <input type="checkbox" name="hobby" value="게임">게임
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td align="right">직업</td>
+                    <td>
+                      <select name="job">
+                        <option>회사원</option>
+                        <option>학생</option>
+                        <option>공무원</option>
+                        <option>기타</option>
+                      </select>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td align="right">이메일</td>
+                    <td>
+                      <input type="email" name="email" placeholder="aaa@bbb.com">
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td align="right">자기소개</td>
+                    <td>
+                      <textarea name="intro" rows="4" cols="25"></textarea>
+                    </td>
+                  </tr>
+
+                  <tr>
+                  <td align="right">생년월일</td>
+                  <td>
+                    <input type="date" name="birth">
+                  </td>
+
+                  <p>
+                    <input type="button" value="회원가입" />
+                    <input type="reset" value="초기화" />
+                    <input type="button" value="나가기" onclick="location.href='login.html'">
+                  </p>
+                </form>
+              </table>
+
+              <!-- 가로 여백 -->
+              <td width="50" height="700" bgcolor="#FFFFFF"></td>
+
+
+              <td width="450" height="700" valign="top" bgcolor="#FFF5E6">
+                <table width="450" height="700" cellspacing="0" cellpadding="0" border="1">
+
+                  <!-- 로그인 영역 -->
+                  <tr>
+                    <td height="250" valign="top" bgcolor="#E8F8F5">
+                      <table width="100%" height="250" cellspacing="0" cellpadding="6" border="0">
+                        <tr>
+                          <td colspan="2" align="center">
+                            <b>로그인</b>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td width="120" align="right">아이디 :</td>
+                          <td>
+                            <input type="text" size="20">
+                          </td>
+                        </tr>
+                        <tr>
+                          <td align="right">비밀번호 :</td>
+                          <td>
+                            <input type="password" size="20">
+                          </td>
+                        </tr>
+                        <tr>
+                          <td colspan="2" align="center">
+                            <input type="button" value="확인">
+                            <input type="button" value="취소">
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+
+                  <!-- 세로 여백 -->
+                  <tr>
+                    <td height="100" bgcolor="#FFFFFF"></td>
+                  </tr>
+
+                  <!-- 하단 영역 -->
+                  <tr>
+                    <td height="350" valign="top" bgcolor="#FDEDEC">
+                      <h4>오른쪽 하단 영역</h4>
+                      <p>450 × 350</p>
+                    </td>
+                  </tr>
+
+                </table>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+
+      <!-- 아래 여백 -->
+      <tr>
+        <td height="50" bgcolor="#FFFFFF"></td>
+      </tr>
+
+    </table>
+
+    </td>
+    </tr>
+
+
+    </td>
+    </tr>
+
+    <!-- ================= 하단 ================= -->
+    <tr>
+      <td>
+        <table width="1000" height="150" cellspacing="0" cellpadding="0" border="1">
+          <tr>
+            <td width="200" height="150" bgcolor="#00ffff"></td>
+            <td width="800" height="150" bgcolor="#00ff0f"></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+
+    </table>
+
+  </body>
+</html>

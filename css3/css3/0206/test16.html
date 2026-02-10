@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>test16.html</title>
+  <style>
+    p.aa {color: brown;}
+    .aa::before {
+      content: "❤️";
+    }
+    .aa::after {
+      content: "⭐";
+    }
+    .bb::selection {
+      color: blue;
+      background-color: aquamarine;
+    }
+
+    .cc::before {
+      content: "";
+  display: inline-block;
+
+  width: 100px;
+  height: 80px;
+
+  background-image: url(../../images/31.jpg);
+  background-size: cover;      /* 또는 contain */
+  background-repeat: no-repeat;
+  background-position: center;
+    }
+
+    .cc::after {
+      content: "";
+  display: inline-block;
+
+  width: 100px;
+  height: 80px;
+
+  background-image: url(../../images/31.jpg);
+  background-size: cover;      /* 또는 contain */
+  background-repeat: no-repeat;
+  background-position: center;
+    }
+
+  </style>
+</head>
+<body>
+  <h2>Pseudo-class(가상클래스) / Pseudo-element(가상요소)</h2>
+  <pre>
+    선택자:가상클래스 {
+      속성:값;
+    }
+    선택자:가상요소 {
+      속성:값;
+    }
+    
+    자주사용하는 가상클래스 ==>> :hover, :link, :first-child, :last-child
+                    요소  ==>> ::before, ::after, ::first-line, ::last-line
+  </pre>
+  <hr/>
+  <p class="aa">1.안녕하세요</p>
+  <p class="bb">이곳을 드래그하세요.</p>
+  <p class="cc">3.안녕하세요</p>
+</body>
+</html>

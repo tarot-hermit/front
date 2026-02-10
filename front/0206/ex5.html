@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Race</title>
+<style>
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    padding: 30px;
+    font-family: sans-serif;
+  }
+
+  
+  #start {
+    display: none;
+  }
+
+  
+  label {
+    display: inline-block;
+    padding: 10px 20px;
+    background: black;
+    color: white;
+    cursor: pointer;
+    margin-bottom: 20px;
+  }
+
+  
+  .track {
+    position: relative;
+    width: 600px;
+    border-right: 5px solid black;
+  }
+
+  
+  .runner {
+    width: 100px;
+    height: 100px;
+    position: relative;
+    margin-bottom: 15px;
+    left: 0;
+
+    animation-name: race;
+    animation-fill-mode: forwards;
+    animation-play-state: paused;
+  }
+
+  
+  #start:checked ~ .track .runner {
+    animation-play-state: running;
+  }
+
+  
+  .r1 { background: red;    animation-duration: 6s; }
+  .r2 { background: orange; animation-duration: 8s; }
+  .r3 { background: green;  animation-duration: 5s; }
+  .r4 { background: blue;   animation-duration: 7s; }
+
+  @keyframes race {
+    from { left: 0; }
+    to   { left: 500px; }
+  }
+</style>
+</head>
+<body>
+
+<h2>🏁경주</h2>
+
+<input type="checkbox" id="start">
+<label for="start">출발!</label>
+
+<div class="track">
+  <div class="runner r1"></div>
+  <div class="runner r2"></div>
+  <div class="runner r3"></div>
+  <div class="runner r4"></div>
+</div>
+
+<p>버튼 클릭으로 경주 시작</p>
+
+</body>
+</html>

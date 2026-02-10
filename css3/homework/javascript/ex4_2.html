@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>폼 양식 연습 2</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: "맑은 고딕", Arial, sans-serif; color:#222; }
+    .wrap { width: 980px; margin: 30px auto; }
+
+    h1 {
+      font-size: 34px;
+      margin: 0 0 18px;
+      font-weight: 900;
+    }
+
+    .grid {
+      display: flex;
+      gap: 30px;
+      align-items: flex-start;
+    }
+
+    .left { width: 560px; }
+    .right { width: 360px; }
+
+    fieldset {
+      border: 2px solid #9a9a9a;
+      padding: 14px 16px 16px;
+      margin: 0 0 16px;
+      background: #fff;
+    }
+    legend { padding: 0 10px; font-weight: 800; }
+
+    .row { display: flex; align-items: center; gap: 10px; margin: 10px 0; }
+    .row label { width: 60px; font-weight: 700; }
+    input[type="text"], select {
+      height: 26px;
+      border: 1px solid #888;
+      padding: 2px 6px;
+    }
+    .w200 { width: 200px; }
+    .w260 { width: 260px; }
+
+    .courses .line { margin: 10px 0; }
+    .courses .line strong { display: inline-block; width: 80px; }
+    .small { font-size: 13px; }
+
+    .time .row label { width: 90px; }
+    .time select { width: 120px; }
+    .time input[type="time"] { height: 26px; border: 1px solid #888; padding: 2px 6px; width: 120px; }
+
+    /* 오른쪽 박스 스타일 */
+    .box-title {
+      font-size: 34px;
+      font-weight: 900;
+      margin: 0 0 10px;
+      text-align: left;
+    }
+    .green { color: #0c8a2a; font-weight: 900; }
+
+    .right fieldset legend { font-weight: 900; }
+    .right .rrow { display: flex; align-items: center; gap: 10px; margin: 10px 0; }
+    .right .rrow label { width: 56px; font-weight: 900; color:#0c8a2a; }
+    .right input[type="text"], .right select { width: 220px; }
+
+    .order .rrow label { width: 70px; }
+    .order input[type="number"] { width: 80px; height: 26px; border: 1px solid #888; padding: 2px 6px; }
+
+    .btns { display: flex; justify-content: center; gap: 14px; margin-top: 12px; }
+    .btn {
+      height: 28px;
+      padding: 0 16px;
+      border: 1px solid #777;
+      background: #eee;
+      cursor: pointer;
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <div class="grid">
+      <!-- LEFT -->
+      <div class="left">
+        <h1>여름방학 특강 신청</h1>
+
+        <form>
+          <fieldset>
+            <legend>수강 신청인</legend>
+
+            <div class="row">
+              <label for="sid">학번</label>
+              <input class="w200" type="text" id="sid" name="sid" />
+            </div>
+
+            <div class="row">
+              <label for="sname">이름</label>
+              <input class="w200" type="text" id="sname" name="sname" />
+            </div>
+
+            <div class="row">
+              <label for="major">학과</label>
+              <select id="major" name="major" class="w200">
+                <option>컴퓨터공학과</option>
+                <option>전자공학과</option>
+                <option>경영학과</option>
+              </select>
+            </div>
+          </fieldset>
+
+          <fieldset class="courses">
+            <legend>수강 과목을 선택하세요</legend>
+
+            <div class="line">
+              <strong>선호색상</strong>
+              <input type="color" value="#000000" />
+            </div>
+
+            <div class="line small">
+              <strong>신청 과목(회화)</strong>
+              <label><input type="radio" name="talk" /> 영어 회화(초급)</label>
+              <label><input type="radio" name="talk" /> 영어 회화(중급)</label>
+              <label><input type="radio" name="talk" /> 영어 회화(고급)</label>
+            </div>
+
+            <div class="line small">
+              <strong>신청 과목(자격)</strong>
+              <label><input type="radio" name="test" checked /> TOEIC</label>
+              <label><input type="radio" name="test" /> TOEFL</label>
+              <label><input type="radio" name="test" /> OPIC</label>
+            </div>
+
+            <div class="line small">
+              <strong>관심분야</strong>
+              <label><input type="checkbox" /> 토플</label>
+              <label><input type="checkbox" /> Vocabulary</label>
+              <label><input type="checkbox" /> 회화</label>
+              <label><input type="checkbox" /> 리스닝</label>
+              <label><input type="checkbox" /> 뉴스</label>
+              <label><input type="checkbox" /> 원서</label>
+              <label><input type="checkbox" /> 독해</label>
+            </div>
+          </fieldset>
+
+          <fieldset class="time">
+            <legend>강의 시간을 선택하세요</legend>
+
+            <div class="row">
+              <label for="week">개강 주</label>
+              <select id="week" name="week">
+                <option>---, ---번째 주</option>
+                <option>1주차</option>
+                <option>2주차</option>
+                <option>3주차</option>
+              </select>
+            </div>
+
+            <div class="row">
+              <label for="tt">강의 시간</label>
+              <input type="time" id="tt" name="tt" />
+            </div>
+          </fieldset>
+        </form>
+      </div>
+
+      
+      <div class="right">
+        <div class="box-title">특강 신청</div>
+
+        <form>
+          <fieldset>
+            <legend>수강과목</legend>
+            <div class="rrow">
+              <span class="green">영어회화(초급)</span>
+              <input type="text" value="오전 9:00~11:00" class="w260" />
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>신청자</legend>
+            <div class="rrow">
+              <label for="rn">이름</label>
+              <input type="text" id="rn" />
+            </div>
+            <div class="rrow">
+              <label for="rid">학번</label>
+              <input type="text" id="rid" value="하이픈없이 입력" />
+            </div>
+            <div class="rrow">
+              <label for="rmajor">학과</label>
+              <select id="rmajor">
+                <option>컴퓨터공학과</option>
+                <option>전자공학과</option>
+                <option>경영학과</option>
+              </select>
+            </div>
+            <div class="rrow">
+              <label for="rphone">연락처</label>
+              <input type="text" id="rphone" value="12345678901" />
+            </div>
+          </fieldset>
+
+          <fieldset class="order">
+            <legend>교재 주문</legend>
+            <div class="rrow">
+              <label for="book">교재</label>
+              <input type="number" id="book" value="3" min="0" />
+            </div>
+            <div class="rrow">
+              <label for="ws">워크시트</label>
+              <input type="number" id="ws" value="3" min="0" />
+            </div>
+            <div class="rrow">
+              <label for="dan">단체주문</label>
+              <input type="number" id="dan" value="100" min="0" />
+            </div>
+          </fieldset>
+
+          <div class="btns">
+            <button type="submit" class="btn">신청하기</button>
+            <button type="reset" class="btn">다시쓰기</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>

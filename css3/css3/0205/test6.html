@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>test6.html</title>
+  
+  <style>
+    * {
+      font-size: 1.5em;
+      font-family: '궁서체','돋움체','명조체';
+    }
+    p {font-size: 20pt;}
+    div {
+      font-size: 1em;
+      font-family: '남산체','굴림체','궁서체';
+    }
+    #mbc {
+      color: red;
+    }
+
+    .kbs {
+      color: blue;
+    }
+    
+    div span#tbc {
+      color: yellow;
+    }
+
+    div span.tbc2 {
+      color: gray;
+    }
+
+    span {
+      color: aqua;
+      font-size: 2em;
+    }
+    
+  </style>
+</head>
+<body>
+  <h1>스타일시트(CascadingStyle Sheet)</h1>
+  <font size="4" style="font-family: '돋움체'; font-size: 1em; font-weight: bolder;">반갑습니다.</font>
+  <hr/>
+  <div class="kbs">4.안녕하세요.<span class="tbc2">....</span>.</div>
+  4-1.반갑습니다<br/>
+  <div id="mbc">5.안녕하세요<span id="tbc">.....</span></div>
+  <div>반갑습니다</div>
+  <div id="sbs">6.안녕하세요.</div>
+  <div>반갑습니다</div>
+  <div id="cjb">7.안녕하세요.</div>
+  <div>반갑습니다</div>
+  <div class="kbs">8.안녕하세요.</div>
+</body>
+</html>

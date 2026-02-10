@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>test11.html</title>
+  <style>
+    img {
+      opacity: 0.5;
+      width: 200px;
+      height: 160px;
+    }
+
+    img:hover {
+      opacity: 1.0;
+    }
+
+    .imgcontent {
+      float: left;
+    }
+    
+    .hidecontent {
+      clear: both;
+    }
+
+    .imgcontent2 {
+      float: left;
+    }
+    #subtitle {
+      clear: both;
+    }
+
+    /* img.img2 {
+      opacity: 1;
+    } */
+    img.img2_1 {
+      opacity: 0.7;
+    }
+    img.img2_2 {
+      opacity: 0.8;
+    }
+    img.img2_3 {
+      opacity: 1;
+    }
+    
+
+    img.img2:hover {
+      opacity: 0.5;
+    }
+
+  </style>
+</head>
+
+<body>
+  <h2>img transparency(opacity)</h2>
+  <p>그림위에 마우스를 올려보세요</p>
+  <div class="container">
+    <div class="cont">
+      <div class="imgcontent">
+        <img src="../../images/12.jpg" alt="12번그림" />
+      </div>
+      <div class="imgcontent">
+        <img src="../../images/17.jpg" alt="17번그림" />
+      </div>
+      <div class="imgcontent">
+        <img src="../../images/18.jpg" alt="18번그림" />
+      </div>
+      <div class="hidecontent"></div>
+
+      <div class="imgcontent2">
+        <img src="../../images/12.jpg" class="img2 img2_1" alt="12번그림" />
+      </div>
+      <div class="imgcontent2">
+        <img src="../../images/17.jpg" class="img2 img2_2" alt="17번그림" />
+      </div>
+      <div class="imgcontent2">
+        <img src="../../images/18.jpg" class="img2 img2_3" alt="18번그림" />
+      </div>
+      <p id="subtitle">
+        Box-sizing 속성을 사용하여 상자안에서 그림이 보이도록 처리합니다.
+      </p>
+    </div>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menu All-in-One (Fixed)</title>
+
+  <style>
+    /* =====================
+      기본 설정
+    ===================== */
+    body {
+      margin: 0;
+      font-family: system-ui, sans-serif;
+    }
+
+    /* =====================
+      상단 메뉴 (가로 + 드롭다운)
+    ===================== */
+    .top-nav {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      background: #333;
+      overflow: hidden;
+    }
+
+    .top-nav>li {
+      float: left;
+      width: 25%;
+      position: relative;
+    }
+
+    /* 🔑 상단 1차 메뉴만 적용 */
+    .top-nav>li>a {
+      display: block;
+      text-align: center;
+      height: 48px;
+      line-height: 48px;
+      padding: 0;
+      color: #fff;
+      background: #444;
+      text-decoration: none;
+      border-bottom: 1px solid #333;
+    }
+
+    .top-nav>li>a:hover {
+      background: #111;
+    }
+
+    .top-nav>li>a.active {
+      background: #04AA6D;
+    }
+
+    /* =====================
+      드롭다운 메뉴
+    ===================== */
+    .sub {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      position: absolute;
+      top: calc(100% + 2px);
+      /* 겹침 방지 */
+      left: 0;
+      width: 100%;
+      display: none;
+      background: #222;
+      border-top: 1px solid #111;
+      z-index: 999;
+    }
+
+    .sub a {
+      display: block;
+      height: auto;
+      line-height: normal;
+      padding: 10px 0;
+      background: #222;
+      color: #fff;
+      text-decoration: none;
+      text-align: center;
+    }
+
+    .sub a:hover {
+      background: #555;
+    }
+
+    .top-nav li:hover .sub {
+      display: block;
+    }
+
+    /* =====================
+      왼쪽 사이드 메뉴
+    ===================== */
+    .side-nav {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      width: 202px;
+      height: 100vh;
+      position: fixed;
+      top: 48px;
+      /* 상단 메뉴 높이 */
+      left: 0;
+      background: #aaffff;
+    }
+
+    .side-nav a {
+      display: block;
+      padding: 10px 16px;
+      text-decoration: none;
+      color: #000;
+    }
+
+    .side-nav a:hover {
+      background: #555;
+      color: #fff;
+    }
+
+    .side-nav a.active {
+      background: #222;
+      color: #fff;
+    }
+
+    /* =====================
+      콘텐츠 영역
+    ===================== */
+    .content {
+      margin-top: 48px;
+      /* 상단 메뉴 높이 */
+      margin-left: 200px;
+      /* 사이드 메뉴 폭 */
+      padding: 20px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- 상단 메뉴 -->
+  <ul class="top-nav">
+    <li><a class="active" href="#">HOME</a></li>
+    <li>
+      <a href="#">Notice ▾</a>
+      <ul class="sub">
+        <li><a href="#">공지사항</a></li>
+        <li><a href="#">이벤트</a></li>
+        <li><a href="#">업데이트</a></li>
+      </ul>
+    </li>
+    <li><a href="#">Guest</a></li>
+    <li><a href="#">Board</a></li>
+  </ul>
+
+  <!-- 왼쪽 사이드 메뉴 -->
+  <ul class="side-nav">
+    <li><a class="active" href="#">Side Home</a></li>
+    <li><a href="#">Profile</a></li>
+    <li><a href="#">Settings</a></li>
+    <li><a href="#">Logout</a></li>
+  </ul>
+
+  <!-- 본문 -->
+  <div class="content">
+    <h2>작업 영역</h2>
+    <p>
+      이 페이지는 <b>HTML + CSS3</b>만으로
+      상단 가로 메뉴, 드롭다운 메뉴, 왼쪽 사이드 메뉴를
+      하나로 합친 예제입니다.
+    </p>
+    <p>스크롤을 내려도 구조가 유지됩니다.</p>
+
+    <p>기타 이야기.......................</p>
+    <p>기타 이야기.......................</p>
+    <p>기타 이야기.......................</p>
+  </div>
+
+</body>
+
+</html>

@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>homework.html</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    .top-header {
+      background: transparent;
+    }
+
+    .header-inner {
+      width: 960px;
+      height: 100px;
+      margin: 0 auto;
+      background-color: #5a0080;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 30px;
+    }
+
+    .logo {
+      font-size: 32px;
+      font-weight: bold;
+      letter-spacing: 4px;
+    }
+
+    .menu a {
+      color: white;
+      text-decoration: none;
+      margin-left: 25px;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .big-block {
+      width: 960px;
+      margin: 0px auto;
+      padding: 25px 30px;
+      background-color: #f6e2bf;
+      border: 3px solid #c7a36a;
+    }
+
+    .hwaldal-block {
+      margin-top: 25px;
+      padding: 18px 22px;
+      background-color: #fff3db;
+      border: 2px dashed #b79860;
+    }
+
+    .img {
+      margin-top: 15px;
+      text-align: center;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+
+    .hwaldal-block img {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .img img {
+      width: 140px;
+      margin: 6px;
+      border: 2px solid #999;
+      background: #fff;
+      display: inline-block;
+      vertical-align: top;
+    }
+
+    .onsun-block {
+      margin-top: 25px;
+      padding: 18px 22px;
+      background-color: #fff3db;
+      border: 2px dashed #b79860;
+    }
+
+    .sanab-block {
+      margin-top: 25px;
+      padding: 18px 22px;
+      background-color: #fff3db;
+      border: 2px dashed #b79860;
+    }
+
+
+    .big-block h3 {
+      margin-top: 0;
+      font-size: 22px;
+      border-bottom: 2px solid #333;
+      padding-bottom: 8px;
+    }
+
+    .small-block h4 {
+      margin-top: 0;
+      font-size: 18px;
+    }
+
+    .big-block p {
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    footer {
+      width: 960px;
+      margin: 0px auto;
+      padding: 0px;
+      border-top: 3px solid #c7a36a;
+      font-size: 13px;
+      line-height: 1.8;
+      background-color: #fff3db;
+    }
+
+    @media screen and (max-width: 1023px) {
+      .top-header {
+        width: 100%;
+      }
+
+      .header-inner {
+        width: 720px;
+        height: auto;
+        padding: 30px;
+      }
+
+      .big-block {
+        width: 720px;
+        padding: 20px;
+      }
+
+      .hwaldal-block,
+      .onsun-block,
+      .sanab-block {
+        padding: 16px;
+      }
+
+      .img img {
+        width: 110px;
+        margin: 4px;
+      }
+
+      .big-block h3 {
+        font-size: 20px;
+      }
+
+      .big-block p {
+        font-size: 13px;
+      }
+
+      footer {
+        width: 720px;
+        padding: 18px;
+        font-size: 12px;
+      }
+    }
+
+    @media screen and (max-width: 767px) {
+
+      .header-inner {
+        width: 360px;
+        height: auto;
+        padding: 30px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+
+      .big-block {
+        width: 360px;
+        padding: 15px;
+      }
+
+      .hwaldal-block,
+      .onsun-block,
+      .sanab-block {
+        padding: 12px;
+      }
+
+      .img img {
+        width: 80px;
+        margin: 3px;
+      }
+
+      .big-block h3,
+      .big-block h4 {
+        font-size: 18px;
+      }
+
+      .big-block p {
+        font-size: 12px;
+        line-height: 1.6;
+      }
+
+      footer {
+        width: 360px;
+        padding: 18px;
+        font-size: 12px;
+      }
+    }
+
+    @media screen and (max-width: 400px) {
+
+      .header-inner {
+        width: 360px;
+        padding: 15px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+
+      .big-block {
+        width: 360px;
+        padding: 15px;
+      }
+
+      .hwaldal-block,
+      .onsun-block,
+      .sanab-block {
+        padding: 12px;
+      }
+
+      .img img {
+        width: 70px;
+        margin: 2px;
+      }
+
+      .big-block h3,
+      .big-block h4 {
+        font-size: 16px;
+      }
+
+      .big-block p {
+        font-size: 12px;
+        line-height: 1.6;
+      }
+
+      footer {
+        width: 360px;
+        padding: 15px;
+        font-size: 11px;
+        line-height: 1.6;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="top-header">
+    <div class="header-inner">
+      <div class="logo">애완견</div>
+      <nav class="menu">
+        <a href="#">애완견 종류</a>
+        <a href="#">입양하기</a>
+        <a href="#">건강돌보기</a>
+        <a href="#">더불어살기</a>
+      </nav>
+    </div>
+  </header>
+
+
+
+
+  <section class="big-block">
+    <div class="hwaldal-block">
+      <h4>활달한 강아지</h4>
+      <p><b>요크셔 테리어</b>
+        <hr />
+        생기있고 활달한 성질을 가지고 있으며 자신보다 몸집이 큰 개나 집에 들어온 침입자를 겁내는 일이 없어 좋은 번견이고 우리나라 최고의의 가정견으로 자리 잡고 있다.
+      </p>
+      <p><b>말티즈</b>
+        <hr />
+        애정이 많고, 충실하며 활발한 성격을 소유하고있다. 이 종은 1급 가정견으로 요크셔테리어와 함께 우리나라 최고의 가정견으로 자리잡고 있다.
+      </p>
+      <p><b>포메 라이언</b>
+        <hr />
+        활기차고 명랑한 개로 유명하고, 걷는 모습이 우아하다.충실하고 우호적인 성격이 가장 먼저 거론된다.
+      </p>
+      <p><b>골든 리트리버</b>
+        <hr />
+        이 견종은 충성심이 강하고 성격이 활달하여 어린아이나 여성이 상대하기에 적합한 견종이다.참을성 또한 강하여 현재는실내에서도 많이 길러지고 있다.
+      </p>
+      <hr />
+      <div class="img">
+        <img src="../요크셔테리어.jpg">
+        <img src="../말티즈.jpg">
+        <img src="../포메라니안.jpg">
+        <img src="../골든리트리버.jpg">
+      </div>
+
+
+    </div>
+  </section>
+  <section class="big-block">
+    <div class="onsun-block">
+      <h4>온순한 강아지</h4>
+      <p><b>쉬즈</b>
+        <hr /> 얼굴에서 풍기는 모습처럼 온순, 쉽게 친숙해지고 우호적이며,어린아이나 여성들이 기르기에 적합한 견종이다.
+      </p>
+      <p><b>퍼그</b>
+        <hr /> 매우 사려가 깊고 사랑스러운 견종이며 그다지 손질이 필요하지 않고 식사량에 비해 많은 운동량이 필요하지 않다.
+      </p>
+      <p><b>래브라도 리트리버</b>
+        <hr /> 침착하고 영리하여 어린이들을 안심하고 맡길 수 있다. 사람을 즐겁게 해주려는 성질이 있다 공을 가지고 노는 것을 가장 좋아한다. 현재 맹인 안내견과 마약견으로 사용중이다. 온순한
+        강아지를 좋아하는 분에게는 적합한 견종이다.
+      </p>
+      <div class="img">
+        <img src="../쉬즈.jpg">
+        <img src="../퍼그.jpg">
+        <img src="../래브라도리트리버.jpg">
+      </div>
+    </div>
+  </section>
+
+
+  <section class="big-block">
+    <div class="sanab-block">
+      <h3>사납지만 복종적인 강아지</h3>
+      <p><b>미니어쳐 핀셔</b>
+        <hr /> 경계심이 강하고 영리하며 작은 몸집에 비해 매우 용감하다. 주인에게 매우 복종적이며 작은 몸집에 보디가드 역할을 충실히 수행한다.
+      </p>
+      <p><b>푸들</b>
+        <hr /> 사납진 않으나, 상당히 복종적이며, 지능지수가 애완견종 중 가장 뛰어나다.
+      </p>
+      <p><b>폭스테리어</b>
+        <hr /> 가정에서 키우기에 적합한 품종이다. 보호본능이 강하고 정이 많다. 하지만 사냥을 하던 본능이 조금은 남아있어 사나운 면이 있다. 이종을 좋은 품종으로 기르기 위해서는 어릴 때부터 엄한
+        훈련이 필요하기도 하다.
+      </p>
+      <div class="img">
+        <img src="../미니어처핀셔.jpg">
+        <img src="../푸들.jpg">
+        <img src="../폭스테리어.jpg">
+      </div>
+    </div>
+  </section>
+
+
+
+
+
+
+  <footer id="footer">
+    <div>건강한 강아지는
+      <hr />
+
+      코가 젖어있고 눈꼽이 없어야 합니다.
+      털에 윤기가 있는 것을 골라야 합니다.
+      입에서 고약한 냄새가 나면 병이 있다는 증거입니다.
+      가장 활발하게 움직이는 녀석을 고르는게 좋습니다.
+      강아지들 중에서 적당한 체구를 유지한 강아지가 좋습니다.
+    </div>
+  </footer>
+</body>
+
+</html>

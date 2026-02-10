@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> display로 메뉴판 만들기</title>
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      padding: 20px;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f5f5f5;
+    }
+
+    /* 전체 메뉴판 */
+    .menu-wrap {
+      width: 900px;
+      max-width: 100%;
+      margin: 0 auto;
+      background: white;
+      border: 1px solid #ddd;
+      padding: 20px;
+    }
+
+    /* 제목 */
+    .title {
+      margin: 0 0 10px 0;
+      text-align: center;
+    }
+    .sub {
+      text-align: center;
+      margin: 0 0 20px 0;
+      color: #666;
+    }
+
+    /* 카테고리(블록) */
+    .section {
+      border-top: 1px solid #eee;
+      padding-top: 15px;
+      margin-top: 15px;
+    }
+    .section h3 {
+      margin: 0 0 10px 0;
+    }
+
+    /* 메뉴 카드: inline-block로 가로 배치 */
+    .item {
+      display: inline-block;   /* ✅ 오늘 배운 핵심 */
+      width: 31%;
+      margin: 1%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      background: #fff7e6;
+      vertical-align: top;
+    }
+
+    /* hover 효과 */
+    .item:hover {
+      background: #fff1c2;
+      border-color: #999;
+    }
+
+    /* 메뉴명(Inline) + 가격(Inline) */
+    .name {
+      display: inline;         /* ✅ inline */
+      font-weight: bold;
+    }
+    .price {
+      display: inline;         /* ✅ inline */
+      float: right;            /* 가독성 위해 오른쪽 정렬(선택) */
+      color: #d11;
+      font-weight: bold;
+    }
+
+    /* 설명 (Block) */
+    .desc {
+      display: block;
+      margin-top: 8px;
+      color: #555;
+      font-size: 14px;
+      line-height: 1.4;
+    }
+
+    /* 태그(Inline-block) */
+    .tag {
+      display: inline-block;
+      padding: 2px 8px;
+      border: 1px solid #bbb;
+      border-radius: 20px;
+      font-size: 12px;
+      margin-top: 10px;
+      background: #fff;
+      color: #333;
+    }
+
+    /* 품절 표시 2가지 비교 */
+    .soldout-hide {
+      display: none;           /* ✅ 화면/자리 모두 제거 */
+    }
+    .soldout-invisible {
+      visibility: hidden;      /* ✅ 자리는 남고 안 보임 */
+    }
+
+    /* 하단 안내 */
+    .note {
+      margin-top: 20px;
+      padding: 10px;
+      border: 1px dashed #bbb;
+      background: #fafafa;
+      font-size: 14px;
+      color: #444;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="menu-wrap">
+    <h2 class="title">🍽  Display로 만든 메뉴판</h2>
+    
+
+    <div class="section">
+      <h3>메인 메뉴</h3>
+
+      <div class="item">
+        <span class="name">불고기 덮밥</span>
+        <span class="price">₩9,000</span>
+        <span class="desc">달콤한 불고기 + 반숙계란 + 밥. 든든한 한 끼!</span>
+        <span class="tag">BEST</span>
+        <span class="tag">추천</span>
+      </div>
+
+      <div class="item">
+        <span class="name">김치찌개</span>
+        <span class="price">₩8,000</span>
+        <span class="desc">진한 국물의 기본 메뉴. 밥이랑 찰떡.</span>
+        <span class="tag">HOT</span>
+      </div>
+
+      <!-- display:none 예시: 완전 사라짐 -->
+      <div class="item soldout-hide">
+        <span class="name">돈까스</span>
+        <span class="price">₩10,000</span>
+        <span class="desc">바삭한 돈까스(품절 테스트: display none)</span>
+        <span class="tag">SOLD OUT</span>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3>사이드</h3>
+
+      <div class="item">
+        <span class="name">만두</span>
+        <span class="price">₩4,000</span>
+        <span class="desc">겉바속촉 군만두 6개.</span>
+        <span class="tag">사이드</span>
+      </div>
+
+      <!-- visibility:hidden 예시: 자리만 남음 -->
+      <div class="item soldout-invisible">
+        <span class="name">감자튀김</span>
+        <span class="price">₩3,500</span>
+        <span class="desc">품절 테스트: visibility hidden</span>
+        <span class="tag">SOLD OUT</span>
+      </div>
+
+      <div class="item">
+        <span class="name">계란찜</span>
+        <span class="price">₩3,000</span>
+        <span class="desc">부드러운 계란찜. 아이들도 좋아함.</span>
+        <span class="tag">인기</span>
+      </div>
+    </div>
+
+    <div class="note">
+      ✅ 체크 포인트<br>
+      - 메뉴 카드 배치: <b>display:inline-block</b><br>
+      - 메뉴명/가격: <b>inline</b><br>
+      - 설명: <b>block</b><br>
+      - 품절 처리: <b>display:none</b> vs <b>visibility:hidden</b> 차이 비교<br>
+      - 마우스 올리면: <b>:hover</b>로 강조
+    </div>
+  </div>
+</body>
+</html>

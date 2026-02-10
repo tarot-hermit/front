@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>test12.html</title>
+  <style>
+    a {
+      text-decoration: none;
+      color: blue;
+    }
+    a:hover {
+      text-decoration: underline;
+      color: orange;
+    }
+
+    a:active {
+      color: green;
+      /* text-decoration: overline; */
+      text-decoration: line-through;
+    }
+    
+    p.atom {
+      font-size: 1.5em;
+      line-height: 2em;
+      text-indent: 50px;
+      text-shadow: 3px 2px 2px gray;
+    }
+
+    span.ap {
+      background-color: pink;
+      cursor: pointer;
+      opacity: 0.6;
+    }
+
+    .item {
+      width: 100px;
+      height: 100px;
+      border: 1px solid gray;
+      margin: 10px;
+      float: left;
+    }
+
+    #item1 { background-color: blueviolet;}
+    #item2 { background-color: skyblue;}
+    #item3 { background-color: rgb(58, 150, 104);}
+    #item4 { background-color: rgb(189, 73, 28);}
+    #item5 { background-color: rgb(59, 149, 165);}
+    #item6 { background-color: rgb(141, 155, 20);}
+    #item7 { background-color: rgb(117, 98, 134);}
+    #item8 { background-color: rgb(190, 37, 17);}
+    #item9 { background-color: rgb(13, 121, 13);}
+    #item10 { background-color: rgb(192, 8, 100);}
+
+
+    .wrapper {
+      width: 1000px;
+      margin: 0 auto;
+      border: 3px solid;
+    }
+    .boxbottom {
+      clear: left;
+    }
+  </style>
+</head>
+<body>
+  <h2>문서장식</h2>
+  <p><a href="#">연결1</a></p>
+  <p><a href="#">연결2</a></p>
+  <p><a href="#">연결3</a></p>
+  <p><a href="#">연결4</a></p>
+  <p class="atom">
+    동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라 만세
+    동해물과 <span class="ap">백두산</span> 이 마르고 닳도록 하느님이 보우하사 우리나라 만세
+    동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라 만세
+    동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라 만세
+    동해물과 <span class="ap">백두산</span> 이 마르고 닳도록 하느님이 보우하사 우리나라 만세
+    동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라 만세
+    동해물과 <span class="ap">백두산</span> 이 마르고 닳도록 하느님이 보우하사 우리나라 만세
+    동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라 만세
+    동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라 만세
+  </p>
+  <div class="wrapper">
+  <div id="item1" class="item"></div>
+  <div id="item2" class="item"></div>
+  <div id="item3" class="item"></div>
+  <div id="item4" class="item"></div>
+  <div id="item5" class="item"></div>
+  <div id="item6" class="item"></div>
+  <div id="item7" class="item"></div>
+  <div id="item8" class="item"></div>
+  <div id="item9" class="item"></div>
+  <div id="item10" class="item"></div>
+  </div>
+  <div class="boxbottom">
+    이곳은 그림 아래 영역입니다. 이곳은 그림아래 영역입니다.
+  </div>
+
+</body>
+</html>

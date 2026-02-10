@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>test22.html</title>
+  <style>
+    body { margin: 0; padding: 0; }
+
+    .container {
+      width: 1000px;          /* 데스크탑 기본 */
+      margin: 0 auto;
+      font-size: 20px;
+    }
+
+    div {
+      background-color: beige;
+      border: 2px solid gray;
+    }
+
+    #area {
+      width: 960px;           /* 데스크탑 기본 */
+      height: 350px;
+      margin: 0 auto;
+      background-color: blueviolet;
+    }
+
+    #tbl {
+      width: 960px;           /* 데스크탑 기본 */
+      height: 450px;
+      margin: 0 auto;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      border: 1px solid gray;
+      text-align: center;
+    }
+
+    #img {
+      margin: 10px 0;
+      padding: 15px 10px;
+      width: 960px;           
+      margin-left: auto;
+      margin-right: auto;
+      box-sizing: border-box;
+    }
+
+    
+    #img img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+      margin: 0 auto;
+    }
+
+    
+    @media screen and (max-width: 1023px) {
+      .container {
+        width: 740px;
+        font-size: 16px;
+      }
+
+      #area { width: 700px; height: 300px; }
+      #tbl  { width: 700px; height: 420px; }
+
+      #img  { width: 100%; }
+    }
+
+    
+    @media screen and (max-width: 767px) {
+      .container {
+        width: 360px;
+        font-size: 14px;
+      }
+
+      #area { width: 340px; height: 220px; }
+      #tbl  { width: 340px; height: auto; }  
+      th, td { font-size: 13px; padding: 0px; }
+
+      #img  { width: 100%; padding: 0px; }
+    }
+    /* screen width 400px =< x < 768px(max-width:400px == max-width <400px)*/
+    @media screen and (max-width:100%) {
+      .container {
+        width: 360px;
+        font-size: 14px;
+      }
+
+      #area { width: 340px; height: 220px; }
+      #tbl  { width: 340px; height: auto; }  
+      th, td { font-size: 13px; padding: 0px; }
+
+      #img  { width: 100%; padding: 0px; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h2>mediaQuery 연습</h2>
+    <p>(반응형 웹사이트 : Responsive Web Design)</p>
+    <hr />
+    <ul>
+      <li>데스크탑 : 1024px 이상</li>
+      <li>태블릿 : 768px ~ 1024px</li>
+      <li>모바일 : 768px미만</li>
+    </ul>
+    <hr />
+    <div>이곳은 반응형 웹 사이트를 위한 화면입니다.</div>
+    <hr />
+    <div id="area"></div>
+    <hr />
+    <table id="tbl">
+      <tr>
+        <th>주제</th>
+        <th>강사</th>
+        <th>장소</th>
+        <th>시간</th>
+      </tr>
+      <tr>
+        <td>반응형웹</td>
+        <td>홍길동</td>
+        <td>그린아카데미</td>
+        <td>09:30</td>
+      </tr>
+      <tr>
+        <th>주제</th>
+        <th>강사</th>
+        <th>장소</th>
+        <th>시간</th>
+      </tr>
+      <tr>
+        <td>웹표준</td>
+        <td>배유나</td>
+        <td>청주대학교</td>
+        <td>17:30</td>
+      </tr>
+      <tr>
+        <th>주제</th>
+        <th>강사</th>
+        <th>장소</th>
+        <th>시간</th>
+      </tr>
+      <tr>
+        <td>Java 프로그래밍</td>
+        <td>김수현</td>
+        <td>충청대학교</td>
+        <td>11:30</td>
+      </tr>
+    </table>
+    <hr />
+    <div id="img">
+      <img src="../../images/와인의신.jpg" />
+    </div>
+  </div>
+</body>
+
+</html>
