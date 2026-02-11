@@ -24,6 +24,14 @@
 
         demo.innerHTML = dateFormat1;
     }
+
+    function dateCheck2() {
+      let dateFormat2 = today.getFullYear() + '-'
+        + ((today.getMonth()+1) < 10 ? "0" + (today.getMonth()+1) : (today.getMonth()+1)) + '-'
+        + ((today.getDate()) < 10 ? "0" + today.getDate() : today.getDate());
+        demo.innerHTML = dateFormat2;
+    }
+
   </script>
 
 </head>
@@ -35,6 +43,13 @@
       <input type="button" value="날짜포맷1" onclick="dateCheck1()" class="btn btn-success"/>
       <input type="button" value="날짜포맷2" onclick="dateCheck1()" class="btn btn-primary"/>
     </div>
+    <hr/>
+    <form name="myform">
+      <p>콤보상자에 날짜 자료 '년/월/일' 순으로 넣어보기</p>
+      <select name="yyyy" id="yyyy">
+        <option>년도선택</option>
+      </select>
+    </form>
     <hr/>
     <div id="demo" class="text-danger fw-bolder"></div>
   </div>
