@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>동적폼 - 상품 주문</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+  <div class="container py-4">
+    <h2 class="mb-3">동적폼 주문 예제</h2>
+    <hr/>
+
+    
+    <div id="app"></div>
+
+    <hr/>
+    
+    <h5 class="mt-4">장바구니</h5>
+    <div id="cartArea" class="border rounded p-3 bg-light"></div>
+  </div>
+
+  <script>
+    'use strict';
+
+    
+    const PRODUCTS = [
+      {
+        name: '수영복',
+        options: [
+          { size: 'S', price: 5000 },
+          { size: 'M', price: 6000 },
+          { size: 'L', price: 7000 },
+        ]
+      },
+      {
+        name: '티셔츠',
+        options: [
+          { size: 'S', price: 12000 },
+          { size: 'M', price: 13000 },
+          { size: 'L', price: 14000 },
+        ]
+      },
+      {
+        name: '운동화',
+        options: [
+          { size: '250', price: 39000 },
+          { size: '260', price: 39000 },
+          { size: '270', price: 42000 },
+        ]
+      },
+    ];
+
+    
+    const cart = [];
+
+    
+    const app = document.getElementById('app');
+
+    const formCard = document.createElement('div');
+    formCard.className = 'border rounded p-4';
+
+    
+    const productGroup = makeGroup('상품명 :');
+    const productSelect = document.createElement('select');
+    productSelect.className = 'form-select';
+    productSelect.id = 'product';
+
+    PRODUCTS.forEach((p, idx) => {
+      const opt = document.createElement('option');
+      opt.value = idx;               
+      opt.textContent = p.name;
+      productSelect.appendChild(opt);
+    });
+
+    productGroup.body.appendChild(productSelect);
+
+    
+    const optionGroup = makeGroup('사이즈(단가) :');
+    const optionSelect = document.createElement('select');
+    optionSelect.className = 'form-select';
+    optionSelect.id = 'option';
+    optionGroup.body.appendChild(optionSelect);
+
+    
+    const qtyGroup = makeGroup('수량(개)');
+    const qtyInput = document.createElement('input');
+    qtyInput.type = 'number';
+    qtyInput.min = '1';
+    qtyInput.value = '1';
+    qtyInput.className = 'form-control';
+    qtyInput.id = 'qty';
+    qtyGroup.body.appendChild(qtyInput);
+
+    // 버튼 영역
+    const btnRow = document.createElement('div');
+    btnRow.className = 'd-flex flex-wrap gap-2 mt-4';
+
+    const btnPrice = makeBtn('가격', 'success');
+    const btnVat   = makeBtn('VAT', 'primary');
+    const btnTotal = makeBtn('총가격', 'info');
+    const btnReset = makeBtn('다시선택', 'secondary');
+    const btnAdd   = makeBtn('장바구니담기', 'warning');
+    const btnClear = makeBtn('장바구니비우기', 'danger');
+
+    btnRow.append(btnPrice, btnVat, btnTotal, btnReset, btnAdd, btnClear);
+
+    // 결과 출력 영역
+    const resultBox = document.createElement('div');
+    resultBox.className = 'mt-3 border rounded p-3';
+    resultBox.id = 'result';
+    resultBox.innerHTML = `
+      <div>📌 가격(단가*수량) : <span id="priceOut">-</span></div>
+      <div>📌 VAT(가격의 10%) : <span id="vatOut">-</span></div>
+      <div>📌 총판매가격(VAT포함) : <span id="totalOut">-</span></div>
+    `;
+
+    // 카드에 붙이기
+    formCard.appendChild(productGroup.wrap);
+    formCard.appendChild(optionGroup.wrap);
+    formCard.appendChild(qtyGroup.wrap);
+    formCard.appendChild(btnRow);
+    formCard.appendChild(resultBox);
+    app.appendChild(formCard);
+
+    
+    function fillOptions(productIndex) {
+      optionSelect.innerHTML = ''; 
+      const opts = PRODUCTS[productIndex].options;
+
+      opts.forEach((o, i) => {
+        const opt = document.createElement('option');
+        opt.value = i; 
+        opt.textContent = `${i + 1}. ${o.size} Size(${o.price.toLocaleString()})`;
+        optionSelect.appendChild(opt);
+      });
+    }
+
+    
+    fillOptions(0);
+
+    
+    productSelect.addEventListener('change', () => {
+      fillOptions(Number(productSelect.value));
+      
+      setOutputs('-', '-', '-');
+    });
+
+    
+    function getSelected() {
+      const pIdx = Number(productSelect.value);
+      const oIdx = Number(optionSelect.value);
+      const qty  = Number(qtyInput.value);
+
+      if (!Number.isFinite(qty) || qty <= 0) {
+        alert('수량은 1 이상 숫자로 입력하세요.');
+        qtyInput.focus();
+        return null;
+      }
+
+      const product = PRODUCTS[pIdx];
+      const option  = product.options[oIdx];
+
+      const price = option.price * qty;
+      const vat   = Math.round(price * 0.1);
+      const total = price + vat;
+
+      return { pIdx, oIdx, qty, product, option, price, vat, total };
+    }
+
+    function setOutputs(price, vat, total) {
+      document.getElementById('priceOut').textContent = price;
+      document.getElementById('vatOut').textContent = vat;
+      document.getElementById('totalOut').textContent = total;
+    }
+
+    
+    btnPrice.addEventListener('click', () => {
+      const s = getSelected();
+      if (!s) return;
+      setOutputs(s.price.toLocaleString(), '-', '-');
+    });
+
+    btnVat.addEventListener('click', () => {
+      const s = getSelected();
+      if (!s) return;
+      setOutputs('-', s.vat.toLocaleString(), '-');
+    });
+
+    btnTotal.addEventListener('click', () => {
+      const s = getSelected();
+      if (!s) return;
+      setOutputs(
+        s.price.toLocaleString(),
+        s.vat.toLocaleString(),
+        s.total.toLocaleString()
+      );
+    });
+
+    btnReset.addEventListener('click', () => {
+      productSelect.value = '0';
+      fillOptions(0);
+      qtyInput.value = '1';
+      setOutputs('-', '-', '-');
+      productSelect.focus();
+    });
+
+    btnAdd.addEventListener('click', () => {
+      const s = getSelected();
+      if (!s) return;
+
+      cart.push({
+        name: s.product.name,
+        size: s.option.size,
+        unit: s.option.price,
+        qty: s.qty,
+        price: s.price,
+        vat: s.vat,
+        total: s.total
+      });
+
+      renderCart();
+      setOutputs(
+        s.price.toLocaleString(),
+        s.vat.toLocaleString(),
+        s.total.toLocaleString()
+      );
+    });
+
+    btnClear.addEventListener('click', () => {
+      cart.length = 0;
+      renderCart();
+    });
+
+    
+    function renderCart() {
+      const cartArea = document.getElementById('cartArea');
+
+      if (cart.length === 0) {
+        cartArea.innerHTML = `<div class="text-muted">장바구니가 비어있습니다.</div>`;
+        return;
+      }
+
+      let sum = 0;
+      const rows = cart.map((c, idx) => {
+        sum += c.total;
+        return `
+          <tr>
+            <td>${idx + 1}</td>
+            <td>${c.name}</td>
+            <td>${c.size}</td>
+            <td class="text-end">${c.unit.toLocaleString()}</td>
+            <td class="text-end">${c.qty}</td>
+            <td class="text-end">${c.total.toLocaleString()}</td>
+          </tr>
+        `;
+      }).join('');
+
+      cartArea.innerHTML = `
+        <div class="table-responsive">
+          <table class="table table-sm align-middle mb-2">
+            <thead class="table-secondary">
+              <tr>
+                <th>#</th><th>상품</th><th>사이즈</th>
+                <th class="text-end">단가</th>
+                <th class="text-end">수량</th>
+                <th class="text-end">합계(VAT포함)</th>
+              </tr>
+            </thead>
+            <tbody>${rows}</tbody>
+          </table>
+        </div>
+        <div class="fw-bold text-end">총 결제금액 : ${sum.toLocaleString()} 원</div>
+      `;
+    }
+
+    renderCart();
+
+    
+    function makeGroup(labelText) {
+      const wrap = document.createElement('div');
+      wrap.className = 'mb-3';
+
+      const label = document.createElement('div');
+      label.className = 'mb-2 fw-semibold';
+      label.textContent = labelText;
+
+      const body = document.createElement('div');
+
+      wrap.append(label, body);
+      return { wrap, body };
+    }
+
+    function makeBtn(text, bsColor) {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = `btn btn-${bsColor} px-4`;
+      btn.textContent = text;
+      return btn;
+    }
+  </script>
+</body>
+</html>

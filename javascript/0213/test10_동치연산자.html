@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>동치연산자(타입까지 비교연산자)</title>
+<script>
+  'use strict';
+
+  let su1 = 100;
+  console.log("su1 타입 : ", typeof(su1));
+  
+  
+  let su2 = '100';
+  console.log("su1 타입 : ", typeof(su2));
+
+  let str = '';
+  if(su1 == su2) str = '1.su1 과 su2는 같습니다.';
+  else str =  '1.su1 과 su2는 다릅니다.'
+
+  console.log("1.su1 과 su2 의 비교 : "  , str);
+  
+  if(su1 === su2) str = '2.su1 과 su2는 같습니다.';
+  else str =  '2.su1 과 su2는 다릅니다.'
+
+  console.log("2.su1 과 su2 의 비교 : "  , str);
+
+
+
+</script>
+</head>
+<body>
+  <h2>동치(동등) 비교(일치연산자 : ===)</h2>
+    <p>자료의 값 뿐만 아니라 , 그 자료의 타입(속성)까지도 비교해서 일치하는지의 결과를 확인한다.</p>
+
+</body>
+</html>

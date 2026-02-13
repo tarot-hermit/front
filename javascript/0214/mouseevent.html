@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>마우스 이벤트 확인</title>
+</head>
+<body>
+
+<h2>마우스 버튼 콘솔 확인</h2>
+<p>마우스를 클릭해보세요 (콘솔 F12 확인)</p>
+
+<script>
+  document.addEventListener("mousedown", function(e) {
+
+    console.log("====== 클릭 발생 ======");
+
+    // 존재하는 속성
+    console.log("e.button 값:", e.button);
+
+    // 존재하지 않는 속성
+    console.log("e.while 값:", e.while);
+
+    // 속성 존재 여부 확인
+    console.log("'button' in e :", "button" in e);
+    console.log("'while' in e :", "while" in e);
+
+    // 버튼 구분 출력
+    if (e.button === 0) {
+      console.log("👉 왼쪽 버튼 클릭");
+    } else if (e.button === 1) {
+      console.log("👉 가운데 버튼 클릭");
+    } else if (e.button === 2) {
+      console.log("👉 오른쪽 버튼 클릭");
+    }
+
+    console.log("------------------------\n");
+  });
+</script>
+
+</body>
+</html>

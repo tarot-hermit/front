@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>날짜함수2</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    'use strict';
+
+    let today = new Date();
+    let day = ['일','월','화','수','목','금','토'];
+
+    // ✅ 2자리 채우기
+    const pad2 = (v) => String(v).padStart(2, '0');
+
+    function dateCheck1() {
+      // ✅ 버튼 누를 때마다 현재시간 갱신(원치 않으면 이 줄 지우고 today 그대로 써도 됨)
+      today = new Date();
+
+      let dateFormat1 = today.getFullYear() + '년 '
+        + (today.getMonth()+1) + '월 '
+        + today.getDate() + '일 '
+        + day[today.getDay()] + '요일 '
+        + today.getHours() + '시 '
+        + today.getMinutes() + '분 '
+        + today.getSeconds() + '초';
+
+      demo.innerHTML = dateFormat1;
+    }
+
+    function dateCheck2() {
+      today = new Date();
+
+      let dateFormat2 = today.getFullYear() + '-'
+        + pad2(today.getMonth()+1) + '-'
+        + pad2(today.getDate());
+
+      demo.innerHTML = dateFormat2;
+    }
+
+    // =========================
+    // 1) 첫번째 콤보(yyyy/mm/dd)
+    // =========================
+
+    // 년도 선택버튼을 클릭하면 수행
+    function yyyyCheck() {
+      const yy = document.getElementById("yyyy").value;
+      yyyy.innerHTML = "";
+
+      for(let i=2026; i>=2000; i--) {
+        let option = document.createElement("option");
+        option.value = i;
+        option.text = i;
+        if(i == yy) option.selected = true;
+        yyyy.appendChild(option);
+      }
+    }
+
+    // 월 클릭시(년도 먼저 체크)
+    function mmCheck() {
+      const yyyyVal = document.getElementById("yyyy").value;
+      if(isNaN(yyyyVal)) {
+        alert("년도를 선택해 주세요");
+        return;
+      }
+
+      const m = document.getElementById("mm").value;
+      mm.innerHTML = "";
+
+      for(let i=1; i<=12; i++) {
+        let option = document.createElement("option");
+        option.value = i;
+        option.text = i;
+        if(i == m) option.selected = true;
+        mm.appendChild(option);
+      }
+    }
+
+    function ddCheck() {
+      const yyyyVal = document.getElementById("yyyy").value;
+      const mmVal = document.getElementById("mm").value;
+
+      if(isNaN(yyyyVal)) return alert("년도를 선택해 주세요");
+      if(isNaN(mmVal)) return alert("월을 선택해 주세요");
+    }
+
+    function mmChange() {
+      const yyyyVal = document.getElementById("yyyy").value;
+      const mmVal = document.getElementById("mm").value;
+
+      if(isNaN(yyyyVal) || isNaN(mmVal)) return;
+
+      let lastDate = new Date(yyyyVal, mmVal, 0).getDate();
+
+      let str = '<option>일선택</option>';
+      for(let i=1; i<=lastDate; i++) {
+        str += '<option value="'+i+'">'+i+'</option>';
+      }
+      dd.innerHTML = str;
+    }
+
+    function dateCheck3() {
+      const yyyyVal = document.getElementById("yyyy").value;
+      const mmVal = document.getElementById("mm").value;
+      const ddVal = document.getElementById("dd").value;
+
+      if(isNaN(yyyyVal)) return alert("년도를 선택해 주세요");
+      if(isNaN(mmVal)) return alert("월을 선택해 주세요");
+      if(isNaN(ddVal)) return alert("일을 선택해 주세요");
+
+      demo.innerHTML = `${yyyyVal}-${pad2(mmVal)}-${pad2(ddVal)}`;
+    }
+
+    function yyyyCheck2() {
+      const yy = document.getElementById("yyyy2").value;
+      yyyy2.innerHTML = "";
+
+      for(let i=2026; i>=2000; i--) {
+        let option = document.createElement("option");
+        option.value = i;
+        option.text = i;
+        if(i == yy) option.selected = true;
+        yyyy2.appendChild(option);
+      }
+    }
+
+    function mmCheck2() {
+      const yyyyVal = document.getElementById("yyyy2").value;
+      if(isNaN(yyyyVal)) {
+        alert("년도를 선택해 주세요");
+        return;
+      }
+
+      const m = document.getElementById("mm2").value;
+      mm2.innerHTML = "";
+
+      for(let i=1; i<=12; i++) {
+        let option = document.createElement("option");
+        option.value = i;
+        option.text = i;
+        if(i == m) option.selected = true;
+        mm2.appendChild(option);
+      }
+    }
+
+    function ddCheck2() {
+      const yyyyVal = document.getElementById("yyyy2").value;
+      const mmVal = document.getElementById("mm2").value;
+
+      if(isNaN(yyyyVal)) return alert("년도를 선택해 주세요");
+      if(isNaN(mmVal)) return alert("월을 선택해 주세요");
+    }
+
+    function mmChange2() {
+      const yyyyVal = document.getElementById("yyyy2").value;
+      const mmVal = document.getElementById("mm2").value;
+
+      if(isNaN(yyyyVal) || isNaN(mmVal)) return;
+
+      let lastDate = new Date(yyyyVal, mmVal, 0).getDate();
+
+      let str = '<option>일선택</option>';
+      for(let i=1; i<=lastDate; i++) {
+        str += '<option value="'+i+'">'+i+'</option>';
+      }
+      dd2.innerHTML = str;
+    }
+
+    
+    function setTodayToCombo2() {
+      const t = new Date();
+      const y = t.getFullYear();
+      const m = t.getMonth() + 1;
+      const d = t.getDate();
+
+      
+      yyyyCheck2();
+      document.getElementById("yyyy2").value = y;
+
+      
+      mmCheck2();
+      document.getElementById("mm2").value = m;
+
+      
+      mmChange2();
+      document.getElementById("dd2").value = d;
+
+      demo.innerHTML = `오늘 날짜: ${y}-${pad2(m)}-${pad2(d)} (${day[t.getDay()]})`;
+    }
+
+    function dateCheck4() {
+      const yyyyVal = document.getElementById("yyyy").value;
+      const mmVal = document.getElementById("mm").value;
+      const ddVal = document.getElementById("dd").value;
+      const nalsu = Number(document.getElementById("nalsu").value);
+
+      if(isNaN(yyyyVal)) return alert("년도를 선택해 주세요");
+      if(isNaN(mmVal)) return alert("월을 선택해 주세요");
+      if(isNaN(ddVal)) return alert("일을 선택해 주세요");
+      if(isNaN(nalsu)) return alert("날수를 입력해 주세요");
+      
+      let baseDate = new Date(Number(yyyyVal), Number(mmVal) - 1, Number(ddVal));
+      baseDate.setDate(baseDate.getDate() + nalsu);
+      
+      let dateFormat = baseDate.getFullYear() + '년 '
+        + (baseDate.getMonth()+1) + '월 '
+        + baseDate.getDate() + '일 '
+        + '(' + day[baseDate.getDay()] + ')';
+
+      demo.innerHTML = "연산결과 : " + dateFormat;
+    }
+  </script>
+</head>
+
+<body>
+<p><br/></p>
+<div class="container">
+  <h2>날짜함수 연습</h2>
+
+  <div>
+    <input type="button" value="날짜포멧1" onclick="dateCheck1()" class="btn btn-success"/>
+    <input type="button" value="날짜포멧2" onclick="dateCheck2()" class="btn btn-primary"/>
+    <input type="button" value="새로고침" onclick="location.reload()" class="btn btn-warning"/>
+  </div>
+
+  <hr/>
+
+  <form name="myform">
+    <p>콤보상자에 날짜 자료 '년/월/일'순으로 넣어보기</p>
+
+    <select name="yyyy" id="yyyy" onclick="yyyyCheck()" onchange="mmChange()">
+      <option>년도선택</option>
+    </select> -
+    <select name="mm" id="mm" onclick="mmCheck()" onchange="mmChange()">
+      <option>월선택</option>
+    </select> -
+    <select name="dd" id="dd" onclick="ddCheck()">
+      <option>일선택</option>
+    </select>
+    &nbsp;
+    <input type="button" value="날짜출력" onclick="dateCheck3()" class="btn btn-outline-dark btn-sm">
+
+    <hr/>
+
+    <p>
+      <button type="button" class="btn btn-primary" onclick="setTodayToCombo2()">
+        콤보상자에 오늘 날짜를 출력하기(숙제1)
+      </button>
+    </p>
+
+    <select name="yyyy2" id="yyyy2" onclick="yyyyCheck2()" onchange="mmChange2()">
+      <option>년도선택</option>
+    </select> -
+    <select name="mm2" id="mm2" onclick="mmCheck2()" onchange="mmChange2()">
+      <option>월선택</option>
+    </select> -
+    <select name="dd2" id="dd2" onclick="ddCheck2()">
+      <option>일선택</option>
+    </select>
+
+    <hr/>
+
+    <div class="input-group">
+      <div class="input-group-text">선택한 날짜와 연산할 숫자(날수)를 입력하시오</div>
+      <input type="number" name="nalsu" id="nalsu" value="1" class="form-control">
+      <button type="button" onclick="dateCheck4()" class="btn btn-success">날짜연산하기</button>
+    </div>
+  </form>
+
+  <hr/>
+  <div id="demo" class="text-danger fw-bolder"></div>
+</div>
+</body>
+</html>

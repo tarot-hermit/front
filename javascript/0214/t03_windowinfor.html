@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>윈도우 정보확인(windowInfor.html)</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    'use strict';
+
+    function screenInfo() {
+      let str = '';
+
+      str += `<div class="border rounded p-3 bg-light">`;
+      str += `<h5 class="mb-3">🖥️ screen 객체 정보</h5>`;
+
+      str += `<div>screen.width : <b>${screen.width}</b> px</div>`;
+      str += `<div>screen.height : <b>${screen.height}</b> px</div>`;
+      str += `<hr/>`;
+
+      str += `<div>screen.availWidth : <b>${screen.availWidth}</b> px (작업표시줄 제외 가능)</div>`;
+      str += `<div<JobInfo>screen.availHeight : <b>${screen.availHeight}</b> px</div>`;
+      str += `<hr/>`;
+
+      str += `<div>screen.colorDepth : <b>${screen.colorDepth}</b> bit</div>`;
+      str += `<div>screen.pixelDepth : <b>${screen.pixelDepth}</b> bit</div>`;
+      str += `</div>`;
+
+      str += `<div>Math.pow : <b>${Math.pow(2,screen.colorDepth)}</b> px</div>`;
+      
+
+      document.getElementById('demo').innerHTML = str;
+    }
+
+    function windowInfo() {
+      let str = '';
+
+      str += `<div class="border rounded p-3 bg-light mt-3">`;
+      str += `<h5 class="mb-3">🪟 window(브라우저 창) 정보</h5>`;
+
+      str += `<div>innerWidth : <b>${window.innerWidth}</b> px</div>`;
+      str += `<div>innerHeight : <b>${window.innerHeight}</b> px</div>`;
+      str += `<div>outerWidth : <b>${window.outerWidth}</b> px</div>`;
+      str += `<div>outerHeight : <b>${window.outerHeight}</b> px</div>`;
+      str += `<hr/>`;
+
+      str += `<div>screenX : <b>${window.screenX}</b> px</div>`;
+      str += `<div>screenY : <b>${window.screenY}</b> px</div>`;
+
+      str += `</div>`;
+
+      document.getElementById('demo2').innerHTML = str;
+    }
+  </script>
+</head>
+<body>
+  <p><br/></p>
+  <div class="container">
+    <h2>윈도우 정보보기(screen객체)</h2>
+    <hr/>
+
+    <div class="d-flex gap-2">
+      <button class="btn btn-success" onclick="screenInfo()">screen 정보</button>
+      <button class="btn btn-primary" onclick="windowInfo()">window 정보</button>
+    </div>
+
+    <div id="demo" class="mt-3"></div>
+    <div id="demo2"></div>
+  </div>
+</body>
+</html>
